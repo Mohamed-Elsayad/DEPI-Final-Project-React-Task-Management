@@ -1,0 +1,88 @@
+.pageContainer {
+  background-color: #f8f9fc;
+  min-height: 100vh;
+}
+
+.taskContainer {
+  padding: 2rem;
+  margin-top: 80px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.pageTitle {
+  color: #2e3a4d;
+  font-weight: 600;
+}
+
+.addButton {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+}
+
+.taskCard {
+  border-radius: 8px;
+  border: 1px solid #e0e3e9;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.taskCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.taskContent {
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.taskTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2e3a4d;
+  margin-bottom: 0.5rem;
+}
+
+.taskDescription {
+  color: #6c757d;
+  font-size: 0.95rem;
+  white-space: pre-line;
+}
+
+.taskButton {
+  border-radius: 6px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.statusBadge {
+  font-weight: 500;
+  text-transform: capitalize;
+  padding: 0.35em 0.65em;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .taskContainer {
+    padding: 1rem;
+  }
+  
+  .taskCard {
+    margin-bottom: 1.5rem;
+  }
+  
+  .taskContent {
+    margin-right: 0.5rem;
+  }
+  
+  .taskButton {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+}

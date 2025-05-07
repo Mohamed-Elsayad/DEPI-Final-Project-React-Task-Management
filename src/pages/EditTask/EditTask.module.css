@@ -1,0 +1,27 @@
+.pageContainer {
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+.formContainer {
+  max-width: 800px;
+  margin-top: 80px;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
