@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { BiSearch, BiUserCircle, BiPlusCircle, BiLogOut } from 'react-icons/bi';
 import { format } from 'date-fns';
-import logo4 from  "../Navbar/logo4.svg";
 
 const CustomNavbar = ({ user }) => {
   const navigate = useNavigate();
@@ -53,10 +52,10 @@ const CustomNavbar = ({ user }) => {
     <div className={styles.navbarCustom}>
       <div className={styles.leftSection}>
         <div
+          className={styles.logoIcon}
           style={{ cursor: 'pointer' }}
           onClick={() => navigate('/')}
-        >
-      <img src={logo4} alt="planify" className="logo" /></div>
+        ></div>
         <span
           className={styles.logoText}
           style={{ cursor: 'pointer' }}
