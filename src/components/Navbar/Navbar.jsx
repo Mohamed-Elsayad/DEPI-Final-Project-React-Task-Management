@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import { BiSearch, BiUserCircle, BiPlusCircle, BiLogOut } from 'react-icons/bi';
 import { format } from 'date-fns';
-import logo4 from  "../../../public/logo4.svg";
+import logo4 from  "../Navbar/logo4.svg";
 
 const CustomNavbar = ({ user }) => {
   const navigate = useNavigate();
