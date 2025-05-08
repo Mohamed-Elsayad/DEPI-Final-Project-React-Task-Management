@@ -116,7 +116,7 @@
     margin-left: 250px !important;
     width: calc(100vw - 250px) !important;
     max-width: calc(100vw - 250px) !important;
-    padding: 32px 32px 32px 32px !important;
+    padding: 0 !important;
     min-height: 100vh;
     box-sizing: border-box;
   }
@@ -136,7 +136,7 @@
 
 @media (min-width: 1200px) {
   .mainContent {
-    padding: 48px 80px 48px 80px !important;
+    padding: 0 !important;
     max-width: 1200px !important;
     margin-left: 250px !important;
     margin-right: auto !important;
