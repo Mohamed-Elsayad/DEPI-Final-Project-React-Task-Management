@@ -43,7 +43,7 @@ const Register = ({ onRegister }) => {
     <div className={styles.pageContainer}>
       <Container className={styles.formContainer}>
         <Card className="shadow-sm">
-          <Card.Header className="bg-primary text-white py-3">
+          <Card.Header style={{ backgroundColor: '#2ee59d' }} className="text-white py-3">
             <h2 className="mb-0">Register</h2>
           </Card.Header>
           <Card.Body className="p-4">
@@ -92,7 +92,7 @@ const Register = ({ onRegister }) => {
                   Already have an account? Login
                 </Button>
                 <Button
-                  variant="primary"
+                  style={{ backgroundColor: '#2ee59d', borderColor: '#2ee59d' }}
                   type="submit"
                   disabled={isSubmitting}
                   size="lg"

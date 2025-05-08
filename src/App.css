@@ -9,3 +9,8 @@
   margin-top: 70px; /* يتناسب مع ارتفاع الـ Navbar */
   padding: 20px;
 }
+
+/* Hide the time label inside react-big-calendar event blocks */
+.rbc-event-label {
+  display: none !important;
+}

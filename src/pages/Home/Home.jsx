@@ -80,9 +80,10 @@ const Home = ({ user, onLogout }) => {
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h2 className={styles.pageTitle}>My Tasks</h2>
           <Button 
-            variant="primary"
+            variant="success"
             onClick={() => navigate('/add-task')}
             className={styles.addButton}
+            style={{ backgroundColor: '#2ee59d', borderColor: '#2ee59d' }}
           >
             <i className="bi bi-plus-lg me-1"></i> Add New Task
           </Button>
@@ -116,8 +117,9 @@ const Home = ({ user, onLogout }) => {
               </p>
               {!searchTerm && (
                 <Button 
-                  variant="primary"
+                  variant="success"
                   onClick={() => navigate('/add-task')}
+                  style={{ backgroundColor: '#2ee59d', borderColor: '#2ee59d' }}
                 >
                   Create Task
                 </Button>
@@ -150,10 +152,11 @@ const Home = ({ user, onLogout }) => {
                   </div>
                   <div className="d-flex">
                     <Button 
-                      variant="outline-primary"
+                      variant="outline-success"
                       size="sm"
                       className={`me-2 ${styles.taskButton}`}
                       onClick={() => navigate(`/edit-task/${task._id}`)}
+                      style={{ color: '#2ee59d', borderColor: '#2ee59d' }}
                     >
                       <i className="bi bi-pencil"></i> Edit
                     </Button>

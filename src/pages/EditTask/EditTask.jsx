@@ -76,7 +76,7 @@ const EditTask = ({ user }) => {
     <div className={styles.pageContainer}>
       <Container className={styles.formContainer}>
         <Card>
-          <Card.Header className="bg-primary text-white">
+          <Card.Header style={{ backgroundColor: '#2ee59d' }} className="text-white">
             <h2>Edit Task</h2>
           </Card.Header>
           <Card.Body>
@@ -138,9 +138,10 @@ const EditTask = ({ user }) => {
                     Cancel
                   </Button>
                   <Button
-                    variant="primary"
+                    variant="success"
                     type="submit"
                     disabled={isSubmitting}
+                    style={{ backgroundColor: '#2ee59d', borderColor: '#2ee59d' }}
                   >
                     {isSubmitting ? 'Saving...' : 'Save Changes'}
                   </Button>

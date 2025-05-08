@@ -4,7 +4,7 @@ import { Container, Form, Button, Alert, Card } from 'react-bootstrap';
 import { taskApi } from '../../services/api';
 import styles from './AddTask.module.css';
 
-const AddTask = ({ user }) => {
+const AddTask = ({ user, fetchTasks }) => {
   const navigate = useNavigate();
   const [task, setTask] = useState({
     title: '',
@@ -28,6 +28,7 @@ const AddTask = ({ user }) => {
 
     try {
       await taskApi.createTask(task);
+      if (fetchTasks) await fetchTasks();
       navigate('/');
     } catch (err) {
       setError(err.message);
@@ -40,7 +41,7 @@ const AddTask = ({ user }) => {
     <div className={styles.pageContainer}>
       <Container className={styles.formContainer}>
         <Card>
-          <Card.Header className="bg-primary text-white">
+          <Card.Header style={{ backgroundColor: '#2ee59d' }} className="text-white">
             <h2>Add New Task</h2>
           </Card.Header>
           <Card.Body>
@@ -87,9 +88,10 @@ const AddTask = ({ user }) => {
                   Cancel
                 </Button>
                 <Button
-                  variant="primary"
+                  variant="success"
                   type="submit"
                   disabled={isSubmitting}
+                  style={{ backgroundColor: '#2ee59d', borderColor: '#2ee59d' }}
                 >
                   {isSubmitting ? 'Saving...' : 'Save Task'}
                 </Button>

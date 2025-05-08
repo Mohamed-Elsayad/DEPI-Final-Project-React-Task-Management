@@ -39,7 +39,7 @@ const Login = ({ onLogin }) => {
       
       <Container className={styles.formContainer}>
         <Card className="shadow-sm">
-          <Card.Header className="bg-primary text-white py-3">
+          <Card.Header style={{ backgroundColor: '#2ee59d' }} className="text-white py-3">
             <h2 className="mb-0">Login</h2>
           </Card.Header>
           <Card.Body className="p-4">
@@ -67,10 +67,15 @@ const Login = ({ onLogin }) => {
               </Form.Group>
 
                <div className="d-flex justify-content-between align-items-center mt-3">
-                   <Button variant="link"onClick={() => navigate('/register')}className="ps-0">
+                   <Button variant="link" onClick={() => navigate('/register')} className="ps-0">
                   Don't have an account? Register
                 </Button>
-                    <Button variant="primary" type="submit" disabled={isSubmitting} size="lg">
+                    <Button 
+                      style={{ backgroundColor: '#2ee59d', borderColor: '#2ee59d' }}
+                      type="submit" 
+                      disabled={isSubmitting} 
+                      size="lg"
+                    >
                   {isSubmitting ? 'Logging in...' : 'Login'}
                 </Button>
              </div>
