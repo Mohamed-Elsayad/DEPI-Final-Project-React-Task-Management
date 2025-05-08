@@ -14,6 +14,13 @@ function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -56,8 +63,8 @@ function App() {
 
   return (
     <div className="App" style={{ display: 'flex' }}>
-      {user && <Sidebar />}
-      <div style={{ flex: 1, marginLeft: user ? 250 : 0 }}>
+      {user && !isMobile && <Sidebar />}
+      <div className="mainContent" style={{ flex: 1, marginLeft: user && !isMobile ? 250 : 0, width: '100%' }}>
         <Routes>
           <Route path="/" element={user ? <Home user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
           <Route path="/add-task" element={user ? <AddTask user={user} fetchTasks={App.fetchTasks} /> : <Navigate to="/login" />} />
@@ -69,6 +76,26 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
+      {user && isMobile && (
+        <nav className="mobileMenu">
+          <a href="/" className="mobileMenuItem">
+            <span className="mobileMenuIcon">🏠</span>
+            <span>Home</span>
+          </a>
+          <a href="/add-task" className="mobileMenuItem">
+            <span className="mobileMenuIcon">➕</span>
+            <span>New</span>
+          </a>
+          <a href="/task-tracking" className="mobileMenuItem">
+            <span className="mobileMenuIcon">📋</span>
+            <span>Tasks</span>
+          </a>
+          <a href="/calendar" className="mobileMenuItem">
+            <span className="mobileMenuIcon">📅</span>
+            <span>Calendar</span>
+          </a>
+        </nav>
+      )}
     </div>
   );
 }
