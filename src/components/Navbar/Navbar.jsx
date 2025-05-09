@@ -56,7 +56,7 @@ const CustomNavbar = ({ user }) => {
           onClick={() => navigate('/')}
         >
           <img
-            src="../../../public/logo.svg"
+            src="../../../public/Logo.svg"
             alt="Logo"
             className={styles.logo}/>
         </div>
