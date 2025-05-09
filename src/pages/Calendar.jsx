@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar as BigCalendar, dateFnsLocalizer } from 'react-big-calendar';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
@@ -22,7 +22,6 @@ const localizer = dateFnsLocalizer({
 function mapTasksToEvents(tasks) {
   return tasks.map((task) => {
     const start = task.createdAt ? new Date(task.createdAt) : new Date();
-    // Set end to the same as start for a point event
     const end = start;
     return {
       id: task._id,
@@ -32,15 +31,20 @@ function mapTasksToEvents(tasks) {
       desc: task.description,
       status: task.status,
       createdAt: task.createdAt,
+      type: 'task'
     };
   });
 }
 
 const eventStyleGetter = (event) => {
   let bgColor = '#2ee59d';
-  if (event.status === 'done') bgColor = '#2ee59d';
-  else if (event.status === 'in-progress') bgColor = '#ff9f43';
-  else if (event.status === 'pending') bgColor = '#ff5b5b';
+  if (event.type === 'project') {
+    bgColor = '#2ee59d';
+  } else {
+    if (event.status === 'done') bgColor = '#2ee59d';
+    else if (event.status === 'in-progress') bgColor = '#ff9f43';
+    else if (event.status === 'pending') bgColor = '#ff5b5b';
+  }
   return {
     style: {
       backgroundColor: bgColor,
@@ -58,23 +62,26 @@ const eventStyleGetter = (event) => {
 const CustomEventWrapper = ({ event, children }) => {
   const time = event.createdAt ? format(new Date(event.createdAt), 'HH:mm') : '';
   return (
-    <div title={time ? `Added: ${time}` : ''}>
+    <div title={`${event.type === 'project' ? 'Project' : 'Task'}: ${time ? `Added: ${time}` : ''}`}>
       {children}
     </div>
   );
 };
 
 const CalendarPage = ({ tasks = [], user, onLogout }) => {
-  const events = mapTasksToEvents(tasks);
   const [currentDate, setCurrentDate] = useState(new Date());
+
+  const taskEvents = mapTasksToEvents(tasks);
+  const allEvents = [...taskEvents];
+
   return (
     <>
       <Navbar user={user} onLogout={onLogout} />
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '32px 16px' }}>
-        <h2 style={{ fontWeight: 700, color: '#222b45', marginBottom: 24 }}>Task Calendar</h2>
+        <h2 style={{ fontWeight: 700, color: '#222b45', marginBottom: 24 }}>Calendar</h2>
         <BigCalendar
           localizer={localizer}
-          events={events}
+          events={allEvents}
           startAccessor="start"
           endAccessor="end"
           style={{ height: 600, background: '#fff', borderRadius: 18, boxShadow: '0 2px 12px rgba(0,0,0,0.04)', padding: 16 }}
@@ -87,7 +94,12 @@ const CalendarPage = ({ tasks = [], user, onLogout }) => {
           components={{
             event: ({ event }) => (
               <div>
-                <div>{event.title}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ fontSize: '12px', opacity: 0.8 }}>
+                    {event.type === 'project' ? '📁' : '✓'}
+                  </span>
+                  <div>{event.title}</div>
+                </div>
                 {event.desc && <div style={{ fontSize: 12, fontWeight: 400 }}>{event.desc}</div>}
               </div>
             ),

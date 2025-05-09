@@ -18,9 +18,14 @@ const Sidebar = () => {
               <BiHomeAlt className={styles.icon}/> Home
             </Link>
           </li>
+          <li className={location.pathname === '/project' ? styles.active : ''}>
+            <Link to="/project" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
+              <BiFolder className={styles.icon}/> Project
+            </Link>
+          </li>
           <li className={location.pathname === '/task-tracking' ? styles.active : ''}>
             <Link to="/task-tracking" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
-              <BiTask className={styles.icon}/> Task Tracking
+              <BiTask className={styles.icon}/> Tracking
             </Link>
           </li>
           <li className={location.pathname === '/calendar' ? styles.active : ''}>
@@ -31,7 +36,7 @@ const Sidebar = () => {
         </ul>
         <div className={styles.menuLabel}>Another Options</div>
         <ul>
-          <li><BiCog className={styles.icon}/> Services</li>
+          <li><BiCog className={styles.icon}/> Settings</li>
           <li><BiChat className={styles.icon}/> Chat</li>
         </ul>
       </nav>

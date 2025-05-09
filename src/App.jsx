@@ -4,23 +4,18 @@ import AddTask from "./pages/AddTask/AddTask";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import EditTask from "./pages/EditTask/EditTask";
+import PlanifyLandingPage from "./pages/PlanifyLandingPage";
 import './App.css';
 import { useEffect, useState } from 'react';
 import Sidebar from "./components/Sidebar";
 import TaskTracking from "./pages/TaskTracking";
 import CalendarPage from "./pages/Calendar";
+import Project from "./components/Project";
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -44,13 +39,16 @@ function App() {
 
   const handleLogin = (userData) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+    if (userData) {
+      localStorage.setItem('user', JSON.stringify(userData));
+    } else {
+      localStorage.removeItem('user');
+    }
   };
 
   const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
-    window.location.href = '/login';
+    handleLogin(null);
+    window.location.href = '/landing';
   };
 
   if (loading) {
@@ -63,39 +61,21 @@ function App() {
 
   return (
     <div className="App" style={{ display: 'flex' }}>
-      {user && !isMobile && <Sidebar />}
-      <div className="mainContent" style={{ flex: 1, marginLeft: user && !isMobile ? 250 : 0, width: '100%' }}>
+      {user && <Sidebar />}
+      <div style={{ flex: 1, marginLeft: user ? 250 : 0 }}>
         <Routes>
-          <Route path="/" element={user ? <Home user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
-          <Route path="/add-task" element={user ? <AddTask user={user} fetchTasks={App.fetchTasks} /> : <Navigate to="/login" />} />
-          <Route path="/edit-task/:id" element={user ? <EditTask user={user} fetchTasks={App.fetchTasks} /> : <Navigate to="/login" />} />
+          <Route path="/landing" element={!user ? <PlanifyLandingPage onLogin={handleLogin} /> : <Navigate to="/" />} />
+          <Route path="/" element={user ? <Home user={user} onLogout={handleLogout} /> : <Navigate to="/landing" />} />
+          <Route path="/add-task" element={user ? <AddTask user={user} fetchTasks={App.fetchTasks} /> : <Navigate to="/landing" />} />
+          <Route path="/edit-task/:id" element={user ? <EditTask user={user} fetchTasks={App.fetchTasks} /> : <Navigate to="/landing" />} />
           <Route path="/login" element={!user ? <Login onLogin={handleLogin} /> : <Navigate to="/" />} />
           <Route path="/register" element={!user ? <Register onRegister={handleLogin} /> : <Navigate to="/" />} />
-          <Route path="/task-tracking" element={user ? <TaskTracking tasks={tasks} user={user} onLogout={handleLogout} fetchTasks={App.fetchTasks} /> : <Navigate to="/login" />} />
-          <Route path="/calendar" element={user ? <CalendarPage tasks={tasks} user={user} onLogout={handleLogout} fetchTasks={App.fetchTasks} /> : <Navigate to="/login" />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/task-tracking" element={user ? <TaskTracking tasks={tasks} user={user} onLogout={handleLogout} fetchTasks={App.fetchTasks} /> : <Navigate to="/landing" />} />
+          <Route path="/calendar" element={user ? <CalendarPage tasks={tasks} user={user} onLogout={handleLogout} fetchTasks={App.fetchTasks} /> : <Navigate to="/landing" />} />
+          <Route path="/project" element={user ? <Project /> : <Navigate to="/landing" />} />
+          <Route path="*" element={<Navigate to="/landing" />} />
         </Routes>
       </div>
-      {user && isMobile && (
-        <nav className="mobileMenu">
-          <a href="/" className="mobileMenuItem">
-            <span className="mobileMenuIcon">🏠</span>
-            <span>Home</span>
-          </a>
-          <a href="/add-task" className="mobileMenuItem">
-            <span className="mobileMenuIcon">➕</span>
-            <span>New</span>
-          </a>
-          <a href="/task-tracking" className="mobileMenuItem">
-            <span className="mobileMenuIcon">📋</span>
-            <span>Tasks</span>
-          </a>
-          <a href="/calendar" className="mobileMenuItem">
-            <span className="mobileMenuIcon">📅</span>
-            <span>Calendar</span>
-          </a>
-        </nav>
-      )}
     </div>
   );
 }

@@ -1,0 +1,32 @@
+.status-section {
+  padding: 20px 0;
+}
+
+.status-logs {
+  display: grid;
+  gap: 15px;
+}
+
+.status-log {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-change {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-arrow {
+  color: #a0aec0;
+}
+
+.log-date {
+  color: #a0aec0;
+  font-size: 0.9em;
+} 

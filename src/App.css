@@ -1,154 +1,38 @@
 .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.content {
-  flex: 1;
-  margin-top: 70px; /* يتناسب مع ارتفاع الـ Navbar */
-  padding: 20px;
+.App-link {
+  color: #61dafb;
 }
 
-/* Hide the time label inside react-big-calendar event blocks */
-.rbc-event-label {
-  display: none !important;
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    display: none !important;
-    width: 0 !important;
-    min-width: 0 !important;
-    max-width: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  .mainContent {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    margin: 0 !important;
-    padding: 56px 0 64px 0 !important; /* 56px للـ navbar و 64px للـ mobileMenu */
-    box-sizing: border-box;
-    min-height: 100vh;
+  to {
+    transform: rotate(360deg);
   }
-  .taskCard {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    margin: 0 0 1rem 0 !important;
-  }
-  .addButton {
-    width: 100% !important;
-    margin-bottom: 1rem !important;
-    font-size: 1rem !important;
-    padding: 0.75rem !important;
-  }
-  .mobileMenu {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.07);
-    padding: 8px 0;
-    z-index: 1000;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    justify-content: space-around;
-    height: 56px;
-  }
-  .mobileMenuItem {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #6c757d;
-    text-decoration: none;
-    font-size: 0.8rem;
-    transition: color 0.2s;
-    padding: 4px 0;
-  }
-  .mobileMenuItem.active, .mobileMenuItem:active, .mobileMenuItem:focus {
-    color: #2ee59d;
-  }
-  .mobileMenuIcon {
-    font-size: 1.5rem;
-    margin-bottom: 2px;
-  }
-}
-@media (max-width: 480px) {
-  .mainContent {
-    padding: 0.25rem !important;
-  }
-  .mobileMenu {
-    padding: 4px 0;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-  .mobileMenuItem {
-    font-size: 0.7rem;
-  }
-  .mobileMenuIcon {
-    font-size: 1.2rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .App {
-    flex-direction: row;
-    min-height: 100vh;
-  }
-  .sidebar {
-    display: flex !important;
-    width: 250px !important;
-    min-width: 250px !important;
-    max-width: 250px !important;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 100;
-    box-shadow: 2px 0 16px rgba(0,0,0,0.04);
-  }
-  .mainContent {
-    margin-left: 250px !important;
-    width: calc(100vw - 250px) !important;
-    max-width: calc(100vw - 250px) !important;
-    padding: 0 !important;
-    min-height: 100vh;
-    box-sizing: border-box;
-  }
-  .taskCard {
-    max-width: 600px;
-    margin: 0 auto 1.5rem auto !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-  }
-  .addButton {
-    max-width: 300px;
-    margin: 0 auto 2rem auto !important;
-    font-size: 1.1rem !important;
-    padding: 1rem 2rem !important;
-    display: block;
-  }
-}
-
-@media (min-width: 1200px) {
-  .mainContent {
-    padding: 0 !important;
-    max-width: 1200px !important;
-    margin-left: 250px !important;
-    margin-right: auto !important;
-  }
-  .taskCard {
-    max-width: 700px;
-  }
-}
-
-.taskContainer {
-  /* Remove forced scrollbars, let browser handle overflow naturally */
-  overflow-y: unset;
-  height: auto;
-  max-height: unset;
 }
