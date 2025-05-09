@@ -18,7 +18,6 @@ const Sidebar = () => {
               <BiHomeAlt className={styles.icon}/> Home
             </Link>
           </li>
-          <li><BiFolder className={styles.icon}/> Project</li>
           <li className={location.pathname === '/task-tracking' ? styles.active : ''}>
             <Link to="/task-tracking" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
               <BiTask className={styles.icon}/> Task Tracking
