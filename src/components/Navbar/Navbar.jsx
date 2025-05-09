@@ -52,10 +52,14 @@ const CustomNavbar = ({ user }) => {
     <div className={styles.navbarCustom}>
       <div className={styles.leftSection}>
         <div
-          className={styles.logoIcon}
           style={{ cursor: 'pointer' }}
           onClick={() => navigate('/')}
-        ></div>
+        >
+          <img
+            src="../../../public/logo.svg"
+            alt="Logo"
+            className={styles.logo}/>
+        </div>
         <span
           className={styles.logoText}
           style={{ cursor: 'pointer' }}
